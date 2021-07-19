@@ -55,7 +55,8 @@ while (eta > C_stop)% && (epi <= 100)
     % construct Matrix_R = [A, B; C, D] for Newton step calculation
     % gradient and Hessian of f(x)
     diff_x = c./(c.*x+1);   % n*1
-    diff2_x = -diag((c.^2/(c'*x+1).^2));    % n*n
+    diff2_x = -diag((c.^2./(c.*x+1).^2));   % a bug in the original version, now fixed!
+    % diff2_x = -diag((c.^2/(c'*x+1).^2));    % n*n
     % Hessian of h(x), from observation, they are all zeros!
     diff2_hx = zeros(m, m);
     A_matrix = diff2_x + diff2_hx;     % n*n
